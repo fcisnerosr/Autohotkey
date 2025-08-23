@@ -164,4 +164,8 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::aa::🤗
 ::msnj::mensaje
 ::qtl::que tal
+::vqv::va que va
+::vqvq::va que va
+::vqvg::va que va, gracias
+::vqvmg::va que va, muchas gracias
 #HotIf                        ; <-- fin de la condición
