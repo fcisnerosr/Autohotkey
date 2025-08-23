@@ -161,4 +161,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::ls::los
 ::lss::las
 ::toos::todos
+::aa::🤗
 #HotIf                        ; <-- fin de la condición
