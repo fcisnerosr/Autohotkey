@@ -175,4 +175,6 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::mma::mamá
 ::pp::papá
 ::ppa::papá
+::qus::Qué estará pasando?
 #HotIf                        ; <-- fin de la condición
+
