@@ -180,5 +180,6 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::ago::agosto
 ::dddd::😄
 ::toas::todas
+::ee::Estimados estudiantes:
 ::h::he
 #HotIf                        ; <-- fin de la condición
