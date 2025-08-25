@@ -170,4 +170,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::vqvmg::va que va, muchas gracias
 ::ds::data science
 ::cd::Ciencia de datos
+::cons::Consulting
 #HotIf                        ; <-- fin de la condición
