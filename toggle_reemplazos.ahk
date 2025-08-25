@@ -177,4 +177,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::qus::Qué estará pasando?
 ::ea::¿es así?
 ::ml::Machine Learning
+::ago::agosto
 #HotIf                        ; <-- fin de la condición
