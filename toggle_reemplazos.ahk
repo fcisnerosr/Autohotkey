@@ -180,4 +180,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::ago::agosto
 ::dddd::😄
 ::toas::todas
+::h::he
 #HotIf                        ; <-- fin de la condición
