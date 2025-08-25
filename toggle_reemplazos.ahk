@@ -171,4 +171,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::ds::data science
 ::cd::Ciencia de datos
 ::cons::Consulting
+::mt::Microsoft Teams
 #HotIf                        ; <-- fin de la condición
