@@ -150,7 +150,6 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::jjjj::jajajajajaja
 ::sem::sin embargo
 ::OE::Ocean Engineering
-::v::vino
 ::nv::no vino
 ::ss::si
 ::sr::ser
