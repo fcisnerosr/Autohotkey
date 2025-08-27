@@ -186,4 +186,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::nl::en el
 ::qb::que bueno
 ::deac::de acuerdo
+::dh::de hecho
 #HotIf                        ; <-- fin de la condición
