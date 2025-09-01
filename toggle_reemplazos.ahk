@@ -194,4 +194,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::snn::sin
 ::dsps::después
 ::dpp::después
+::cafe::café
 #HotIf                        ; <-- fin de la condición
