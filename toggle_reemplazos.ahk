@@ -168,7 +168,6 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::vqvg::va que va, gracias
 ::vqvmg::va que va, muchas gracias
 ::ds::data science
-::cd::Ciencia de datos
 ::cons::Consulting
 ::mt::Microsoft Teams
 ::mma::mamá
