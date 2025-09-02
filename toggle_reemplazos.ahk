@@ -194,4 +194,6 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::dsps::después
 ::dpp::después
 ::cafe::café
+::qo::que onda
+::jsv::Journal of Sound and Vibration
 #HotIf                        ; <-- fin de la condición
