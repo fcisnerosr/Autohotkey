@@ -196,4 +196,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::cafe::café
 ::qo::que onda
 ::jsv::Journal of Sound and Vibration
+::tl::tal
 #HotIf                        ; <-- fin de la condición
