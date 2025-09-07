@@ -198,6 +198,7 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::jsv::Journal of Sound and Vibration
 ::tl::tal
 ::stan::están
+::eff::,¿es así?
 
 ; --Data Science--
 ::df::dataframe
