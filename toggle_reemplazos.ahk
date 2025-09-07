@@ -198,4 +198,7 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::jsv::Journal of Sound and Vibration
 ::tl::tal
 ::stan::están
+
+; --Data Science--
+::df::dataframe
 #HotIf                        ; <-- fin de la condición
