@@ -199,7 +199,7 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::tl::tal
 ::stan::están
 ::eff::,¿es así?
-
+::ckk::https://chatgpt.com
 ; --Data Science--
 ::df::dataframe
 #HotIf                        ; <-- fin de la condición
