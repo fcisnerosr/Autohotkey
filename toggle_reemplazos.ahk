@@ -204,4 +204,6 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::qt::que te
 ; --Data Science--
 ::df::dataframe
+::sept::septiembre
+::sep::septiembre
 #HotIf                        ; <-- fin de la condición
