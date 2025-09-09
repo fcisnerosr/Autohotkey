@@ -202,6 +202,8 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::ckk::https://chatgpt.com
 ::mac::márcame
 ::qt::que te
+::ste::este
+::stee::esté
 ; --Data Science--
 ::df::dataframe
 ::sept::septiembre
