@@ -208,4 +208,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::df::dataframe
 ::sept::septiembre
 ::sep::septiembre
+::ccc::comidas fuera del hogar
 #HotIf                        ; <-- fin de la condición
