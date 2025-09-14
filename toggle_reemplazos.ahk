@@ -209,4 +209,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::sept::septiembre
 ::sep::septiembre
 ::ccc::comidas fuera del hogar
+::mkkk::Mejora el siguiente prompt de formato markdown en código RAW, pero no cambies nada, solo mejora su redacción para que quede claro que lo que tiene hacer el LLM: 
 #HotIf                        ; <-- fin de la condición
