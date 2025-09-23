@@ -189,6 +189,7 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::sigs::siguientes
 ::no.::número
 ::noe::no entiendo
+::noo::no entendí
 ::sn::son
 ::snn::sin
 ::dsps::después
