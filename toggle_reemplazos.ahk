@@ -214,4 +214,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::mll::Machine Learning Engineer
 ::stado::estado
 ::stas::estas
+::qedo::quedó
 #HotIf                        ; <-- fin de la condición
