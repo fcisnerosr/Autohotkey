@@ -215,4 +215,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::stado::estado
 ::stas::estas
 ::qedo::quedó
+::stoy::estoy
 #HotIf                        ; <-- fin de la condición
