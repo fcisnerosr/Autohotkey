@@ -149,6 +149,7 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::jjj::jajajaja
 ::jjjj::jajajajajaja
 ::sem::sin embargo
+::smm::sin embargo
 ::OE::Ocean Engineering
 ::nv::no vino
 ::ss::si
@@ -179,7 +180,7 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::ago::agosto
 ::dddd::😄
 ::toas::todas
-::ee::Estimados estudiantes:
+::ee::estimados estudiantes:
 ::h::he
 ::ii::\
 ::nl::en el
@@ -216,4 +217,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::stas::estas
 ::qedo::quedó
 ::stoy::estoy
+::stos::estos
 #HotIf                        ; <-- fin de la condición
