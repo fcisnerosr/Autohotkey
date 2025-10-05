@@ -221,4 +221,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::cme::se me
 ::sten::estén
 ::stén::estén
+::prox::próximo
 #HotIf                        ; <-- fin de la condición
