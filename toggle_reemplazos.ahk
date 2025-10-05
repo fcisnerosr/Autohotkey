@@ -222,4 +222,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::sten::estén
 ::stén::estén
 ::prox::próximo
+::oct::octubre
 #HotIf                        ; <-- fin de la condición
