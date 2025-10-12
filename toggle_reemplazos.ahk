@@ -224,4 +224,5 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::prox::próximo
 ::oct::octubre
 ::star::estar
+::coo::comidas fuera del hogar
 #HotIf                        ; <-- fin de la condición
