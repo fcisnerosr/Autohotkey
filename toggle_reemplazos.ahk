@@ -207,7 +207,7 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::ste::este
 ::stee::esté
 ; --Data Science--
-::df::dataframe
+::dff::dataframe
 ::sept::septiembre
 ::sep::septiembre
 ::ccc::comidas fuera del hogar
