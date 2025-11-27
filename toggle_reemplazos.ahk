@@ -226,4 +226,8 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::star::estar
 ::coo::comidas fuera del hogar
 ::yc::ya se
+::tmpc::tampoco
+::tmpoco::tampoco
+::tmcp::tampoco
+::tmpoco::tampoco
 #HotIf                        ; <-- fin de la condición
