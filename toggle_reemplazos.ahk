@@ -3,6 +3,12 @@
 
 global HotOn := true  ; estado inicial: ACTIVADO
 
+; ---------- Función que consulta el estado ----------
+IsOn() {
+    global HotOn
+    return HotOn
+}
+
 ; ---------- Hotkeys ----------
 ^+l:: {                       ; Ctrl+Shift+L -> ON/OFF
     global HotOn
@@ -12,8 +18,9 @@ global HotOn := true  ; estado inicial: ACTIVADO
 
 ^!q:: ExitApp                 ; Ctrl+Alt+Q -> salir
 
-; ---------- Hotstrings (quedan condicionados por HotOn) ----------
-#HotIf HotOn                  ; <-- si HotOn = true, están activos
+; ---------- Hotstrings (condicionados por IsOn()) ----------
+#HotIf IsOn()                 ; <-- si IsOn() = true, están activos
+
 ::q::que
 ::xq::porque
 ::k::que
@@ -230,4 +237,6 @@ global HotOn := true  ; estado inicial: ACTIVADO
 ::tmpoco::tampoco
 ::tmcp::tampoco
 ::tmpoco::tampoco
+::sss::sí
+::pp::proxy RolesClubBotToastmastersFree
 #HotIf                        ; <-- fin de la condición
