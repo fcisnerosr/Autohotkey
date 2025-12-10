@@ -238,5 +238,5 @@ IsOn() {
 ::tmcp::tampoco
 ::tmpoco::tampoco
 ::sss::sí
-::pp::proxy RolesClubBotToastmastersFree
+::ppp::proxy RolesClubBotToastmastersFree
 #HotIf                        ; <-- fin de la condición
