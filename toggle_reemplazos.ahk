@@ -1,39 +1,117 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 
-global HotOn := true  ; estado inicial: ACTIVADO
+; ==========================================================
+; CONFIGURACIÓN GENERAL
+; ==========================================================
+SetCapsLockState("AlwaysOff") ; CapsLock siempre apagado (usado para ESC)
 
-; ---------- Función que consulta el estado ----------
-IsOn() {
-    global HotOn
-    return HotOn
+; ==========================================================
+; CONFIGURACIÓN DE GRUPOS
+; ==========================================================
+GroupAdd "Exclusiones", "ahk_exe mintty.exe" 
+
+GroupAdd "GrupoTerminal", "ahk_class ConsoleWindowClass"
+GroupAdd "GrupoTerminal", "ahk_exe WindowsTerminal.exe"
+GroupAdd "GrupoTerminal", "ahk_exe wsl.exe"
+GroupAdd "GrupoTerminal", "ahk_exe wslhost.exe"
+GroupAdd "GrupoTerminal", "ahk_exe ubuntu.exe"
+GroupAdd "GrupoTerminal", "ahk_exe debian.exe"
+GroupAdd "GrupoTerminal", "ahk_exe conhost.exe"
+
+global HotOn := true
+global PinnedHwnd := 0
+global Alpha := 220
+global Step  := 20
+global VSCodeChat := false 
+global TerminalChat := false 
+
+; --- Controles Generales ---
+^+l:: {
+    global HotOn := !HotOn
+    TrayTip("Reemplazos", HotOn ? "🟢 ACTIVADOS GLOBALMENTE" : "🔴 DESACTIVADOS GLOBALMENTE", "Iconi")
 }
 
-; ---------- Hotkeys ----------
-^+l:: {                       ; Ctrl+Shift+L -> ON/OFF
-    global HotOn
-    HotOn := !HotOn
-    TrayTip "Reemplazos", HotOn ? "🟢 ACTIVADOS" : "🔴 DESACTIVADOS", "Iconi"
+^!q:: ExitApp
+
+; ==========================================================
+; CONTROL EXCLUSIVO PARA VS CODE
+; ==========================================================
+#HotIf WinActive("ahk_exe Code.exe")
+!c:: { 
+    global VSCodeChat := !VSCodeChat
+    ToastToggle("VS Code", VSCodeChat)
+}
+#HotIf
+
+; ==========================================================
+; CONTROL EXCLUSIVO PARA TERMINAL / NVIM
+; ==========================================================
+#HotIf WinActive("ahk_group GrupoTerminal")
+!c:: { 
+    global TerminalChat := !TerminalChat
+    ToastToggle("Terminal/Nvim", TerminalChat)
+}
+#HotIf
+
+; Función auxiliar para notificaciones
+ToastToggle(AppName, State) {
+    if (State)
+        TrayTip(AppName, "💬 Modo Chat: ACTIVADO`n(Reemplazos permitidos)", "Iconi")
+    else
+        TrayTip(AppName, "💻 Modo Comando: DESACTIVADO`n(Navegación segura)", "Iconi")
 }
 
-^!q:: ExitApp                 ; Ctrl+Alt+Q -> salir
+; ==========================================================
+; NAVEGACIÓN VIM (GLOBAL)
+; ==========================================================
+CapsLock::Esc
 
-; ---------- Hotstrings (condicionados por IsOn()) ----------
-#HotIf IsOn()                 ; <-- si IsOn() = true, están activos
+!h::Send("{Left}")
+!j::Send("{Down}")
+!k::Send("{Up}")
+!l::Send("{Right}")
 
+; Borrado
+!x::Send("{Backspace}")  ; Alt + X -> Borrar caracter (izquierda)
+!n::Send("^{Backspace}") ; Alt + N -> Borrar palabra completa
+
+; Navegación extendida
+!i::Send("{PgUp}")
+!u::Send("{PgDn}")
+
+; Manipulación por palabras
+!y::Send("^{Left}")
+!o::Send("^{Right}")
+
+; ==========================================================
+; REEMPLAZOS
+; ==========================================================
+#HotIf HotOn and (!WinActive("ahk_group Exclusiones") and !WinActive("ahk_exe Code.exe") and !WinActive("ahk_group GrupoTerminal")) 
+    or (HotOn and WinActive("ahk_exe Code.exe") and VSCodeChat)
+    or (HotOn and WinActive("ahk_group GrupoTerminal") and TerminalChat)
+
+#Hotstring T
+
+; --- TUS HOTSTRINGS ---
+::edo::estado
+::n::en
+::g::#
+::gg::##
+::x::por
 ::q::que
+::l::el
+::cl::Claudia
 ::xq::porque
 ::k::que
 ::t::te
-::l::el
 ::ll::la
 ::mkk::Mejora el siguiente prompt de formato markdown en código RAW:
-::G::{#}
-::GG::{##}
-::GGG::{###}
+::G::#
+::GG::##
+::GGG::###
 ::d::de
 ::m::me
-::n::en
 ::xk::porque
 ::too::todo
 ::bn::bien
@@ -56,7 +134,6 @@ IsOn() {
 ::bb::bebé
 ::sta::está
 ::aora::ahora
-::x::por
 ::bd::buenos días
 ::Bd::Buenos días
 ::TM::Toastmasters
@@ -83,11 +160,11 @@ IsOn() {
 ::mak::en formato markdown en código RAW
 ::dl::del
 ::qos::que ondas
-::paraq::para que 
-::paq::para que 
-::paqe::para que 
-::pake::para que 
-::pa::para 
+::paraq::para que
+::paq::para que
+::paqe::para que
+::pake::para que
+::pa::para
 ::oa::ok amor
 ::qeda::queda
 ::ntp::no te preocupes
@@ -111,7 +188,6 @@ IsOn() {
 ::yt::YouTube
 ::my::muy
 ::porq::porqe
-::cl::Claudia
 ::clau::Claudia
 ::bebe::bebé
 ::mñn::mañana
@@ -124,7 +200,7 @@ IsOn() {
 ::yaq::ya que
 ::ma::mi amor
 ::mmc::mecánica del medio continuo
-::mm::mecánica de los materiales
+::mm::mamá
 ::dnd::de nada
 ::lea::le amo
 ::palla::para allá
@@ -170,7 +246,6 @@ IsOn() {
 ::toos::todos
 ::aa::🤗
 ::msnj::mensaje
-::qtl::que tal
 ::vqv::va que va
 ::vqvq::va que va
 ::vqvg::va que va, gracias
@@ -190,7 +265,6 @@ IsOn() {
 ::ee::estimados estudiantes:
 ::h::he
 ::ii::\
-::nl::en el
 ::qb::que bueno
 ::deac::de acuerdo
 ::dh::de hecho
@@ -213,17 +287,15 @@ IsOn() {
 ::qt::que te
 ::ste::este
 ::stee::esté
-; --Data Science--
 ::dff::dataframe
 ::sept::septiembre
 ::sep::septiembre
-::ccc::comidas fuera del hogar
-::mkkk::Mejora el siguiente prompt de formato markdown en código RAW, pero no cambies nada, solo mejora su redacción para que quede claro que lo que tiene hacer el LLM: 
+::ccc::comidas fuera del hogar,
+::mkkk::Mejora el siguiente prompt de formato markdown en código RAW, pero no cambies nada, solo mejora su redacción para que quede claro que lo que tiene hacer el LLM:
 ::mll::Machine Learning Engineer
 ::stado::estado
 ::stas::estas
 ::qedo::quedó
-::stoy::estoy
 ::stos::estos
 ::cme::se me
 ::sten::estén
@@ -231,13 +303,99 @@ IsOn() {
 ::prox::próximo
 ::oct::octubre
 ::star::estar
-::coo::comidas fuera del hogar
+::cooo::comidas fuera del hogar
 ::yc::ya se
 ::tmpc::tampoco
 ::tmpoco::tampoco
 ::tmcp::tampoco
-::tmpoco::tampoco
 ::sss::sí
 ::ppp::proxy RolesClubBotToastmastersFree
 ::staba::estaba
-#HotIf                        ; <-- fin de la condición
+::xe::por ejemplo
+::cq::se que
+::sto::esto
+
+#HotIf
+
+; =========================
+; Funciones de Ventana
+; =========================
+WinGetAlwaysOnTop(winTitle := "A") {
+    return (WinGetExStyle(winTitle) & 0x8) != 0
+}
+
+#+t:: {
+    global PinnedHwnd, Alpha
+    try {
+        PinnedHwnd := WinGetID("A")
+        isTop := WinGetAlwaysOnTop("ahk_id " PinnedHwnd)
+        WinSetAlwaysOnTop(!isTop, "ahk_id " PinnedHwnd)
+        if (!isTop) {
+            WinSetTransparent(Alpha, "ahk_id " PinnedHwnd)
+        } else {
+            WinSetTransparent(255, "ahk_id " PinnedHwnd)
+        }
+    }
+}
+
+#!Up:: {
+    global PinnedHwnd, Alpha, Step
+    if (PinnedHwnd) {
+        Alpha := Min(255, Alpha + Step)
+        WinSetTransparent(Alpha, "ahk_id " PinnedHwnd)
+    }
+}
+
+#!Down:: {
+    global PinnedHwnd, Alpha, Step
+    if (PinnedHwnd) {
+        Alpha := Max(40, Alpha - Step)
+        WinSetTransparent(Alpha, "ahk_id " PinnedHwnd)
+    }
+}
+
+; =========================
+; Apertura de Apps
+; =========================
+#n::OpenNvimWSL() 
+#!g::OpenBraveGemini()
+
+OpenNvimWSL() {
+    try {
+        Run("wsl.exe --cd ~ nvim texto.txt") 
+        if WinWaitActive("ahk_class ConsoleWindowClass", , 3) or WinWaitActive("ahk_exe wsl.exe", , 3) {
+             hwnd := WinGetID("A")
+             WinRestore(hwnd)
+             
+             ; CORRECCIÓN AQUÍ: Separamos las variables en líneas distintas
+             w := 900
+             h := 600
+             
+             MonitorGetWorkArea(1, &WL, &WT, &WR, &WB)
+             x := WL + (WR - WL - w) / 2
+             y := WT + (WB - WT - h) / 2
+             WinMove(x, y, w, h, hwnd)
+             global TerminalChat := true 
+             TrayTip("Nvim", "Abierto: texto.txt`n(Centrado y Chat ON)", "Iconi")
+        }
+    } catch as e {
+        MsgBox("Error al intentar abrir WSL: " e.Message)
+    }
+}
+
+OpenBraveGemini() {
+    global PinnedHwnd, Alpha
+    try {
+        Run("brave.exe --new-window https://gemini.google.com/u/1/app")
+        if WinWaitActive("ahk_exe brave.exe", , 5) {
+            hwnd := WinGetID("A")
+            processName := WinGetProcessName("ahk_id " hwnd)
+            if (processName = "brave.exe") {
+                WinSetAlwaysOnTop(true, hwnd)
+                WinSetTransparent(180, hwnd)
+                PinnedHwnd := hwnd
+                Alpha := 180
+            }
+        }
+    }
+}
