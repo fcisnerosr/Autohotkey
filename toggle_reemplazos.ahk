@@ -72,8 +72,14 @@ CapsLock::Esc
 !k::Send("{Up}")
 !l::Send("{Right}")
 
-; Borrado
-!x::Send("{Backspace}")  ; Alt + X -> Borrar caracter (izquierda)
+; --- SECCIÓN DE BORRADO ---
+!x::
+!f::
++x::
++f::
++k::
++n::Send("{Backspace}")  ; Borra 1 caracter con Alt+X/F o Shift+X/F/K/N
+
 !n::Send("^{Backspace}") ; Alt + N -> Borrar palabra completa
 
 ; Navegación extendida
@@ -367,7 +373,6 @@ OpenNvimWSL() {
              hwnd := WinGetID("A")
              WinRestore(hwnd)
              
-             ; CORRECCIÓN AQUÍ: Separamos las variables en líneas distintas
              w := 900
              h := 600
              
