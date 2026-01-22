@@ -212,7 +212,6 @@ CapsLock::Esc
 ::palla::para allá
 ::namas::nada más
 ::leam::le amo
-::nn::no
 ::cn::con
 ::qm::que me
 ::rc::Responde concretamante
