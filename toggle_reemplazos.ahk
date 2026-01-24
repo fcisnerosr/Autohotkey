@@ -102,8 +102,6 @@ CapsLock::Esc
 ; --- TUS HOTSTRINGS ---
 ::edo::estado
 ::n::en
-::g::#
-::gg::##
 ::x::por
 ::q::que
 ::l::el
