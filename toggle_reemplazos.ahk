@@ -72,6 +72,56 @@ CapsLock::Esc
 !k::Send("{Up}")
 !l::Send("{Right}")
 
+; ==========================================================
+; GESTIÓN DE VENTANAS (Win + Alt + VIM Keys)
+; ==========================================================
+; Movimiento manual de ventanas (Evita Snap Assist de Windows)
+MoveWin(x, y) {
+    try {
+        hwnd := WinGetID("A")
+        ; Si está maximizada, restaurarla para poder moverla
+        if (WinGetMinMax(hwnd) == 1)
+            WinRestore(hwnd)
+        
+        WinGetPos(&cX, &cY, , , hwnd)
+        WinMove(cX + x, cY + y, , , hwnd)
+    }
+}
+
+#!h::MoveWin(-800, 0)  ; Mover izquierda 800px
+#!j::Send("#{Down}")   ; Mover abajo (Minimizar)
+#!k::Send("#{Up}")     ; Mover arriba (Maximizar)
+#!l::MoveWin(800, 0)   ; Mover derecha 800px
+
+; Mover ventana a otro monitor (Win + Shift + Alt + h/l)
+#!+h::Send("#+{Left}")
+#!+l::Send("#+{Right}")
+
+; Redimensionar ventanas (Win + Ctrl + h/j/k/l)
+ResizeWin(w_delta, h_delta) {
+    try {
+        hwnd := WinGetID("A")
+        ; Si está maximizada, no se suele poder redimensionar bien sin restaurar, 
+        ; pero probamos directo por si acaso o el usuario prefiere restaurar manual.
+        if (WinGetMinMax(hwnd) == 1)
+            return ; O WinRestore(hwnd) si prefieres que se restaure sola
+
+        WinGetPos(, , &w, &h, hwnd)
+        WinMove(, , w + w_delta, h + h_delta, hwnd)
+    }
+}
+
+#^h::ResizeWin(-100, 0)   ; Estrechar (Menos ancho)
+#^l::ResizeWin(100, 0)    ; Ensanchar (Más ancho)
+#^k::ResizeWin(0, -100)   ; Acortar (Menos alto)
+#^j::ResizeWin(0, 100)    ; Alargar (Más alto)
+
+; ==========================================================
+; ESCRITORIOS VIRTUALES (Ctrl + Alt + h/l)
+; ==========================================================
+^!h::Send("^#{Left}")   ; Ctrl + Alt + h  => Escritorio Anterior
+^!l::Send("^#{Right}")  ; Ctrl + Alt + l  => Escritorio Siguiente
+
 ; --- SECCIÓN DE BORRADO ---
 !x::
 !f::
