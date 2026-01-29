@@ -75,11 +75,9 @@ CapsLock::Esc
 ; ==========================================================
 ; GESTIÓN DE VENTANAS (Win + Alt + VIM Keys)
 ; ==========================================================
-; Movimiento manual de ventanas (Evita Snap Assist de Windows)
 MoveWin(x, y) {
     try {
         hwnd := WinGetID("A")
-        ; Si está maximizada, restaurarla para poder moverla
         if (WinGetMinMax(hwnd) == 1)
             WinRestore(hwnd)
         
@@ -88,49 +86,45 @@ MoveWin(x, y) {
     }
 }
 
-#!h::MoveWin(-800, 0)  ; Mover izquierda 800px
-#!j::Send("#{Down}")   ; Mover abajo (Minimizar)
-#!k::Send("#{Up}")     ; Mover arriba (Maximizar)
-#!l::MoveWin(800, 0)   ; Mover derecha 800px
+#!h::MoveWin(-800, 0)  
+#!j::Send("#{Down}")   
+#!k::Send("#{Up}")     
+#!l::MoveWin(800, 0)   
 
-; Mover ventana a otro monitor (Win + Shift + Alt + h/l)
+; Mover ventana a otro monitor
 #!+h::Send("#+{Left}")
 #!+l::Send("#+{Right}")
 
-; Redimensionar ventanas (Win + Ctrl + h/j/k/l)
+; Redimensionar ventanas
 ResizeWin(w_delta, h_delta) {
     try {
         hwnd := WinGetID("A")
-        ; Si está maximizada, no se suele poder redimensionar bien sin restaurar, 
-        ; pero probamos directo por si acaso o el usuario prefiere restaurar manual.
         if (WinGetMinMax(hwnd) == 1)
-            return ; O WinRestore(hwnd) si prefieres que se restaure sola
+            return 
 
         WinGetPos(, , &w, &h, hwnd)
         WinMove(, , w + w_delta, h + h_delta, hwnd)
     }
 }
 
-#^h::ResizeWin(-100, 0)   ; Estrechar (Menos ancho)
-#^l::ResizeWin(100, 0)    ; Ensanchar (Más ancho)
-#^k::ResizeWin(0, -100)   ; Acortar (Menos alto)
-#^j::ResizeWin(0, 100)    ; Alargar (Más alto)
+#^h::ResizeWin(-100, 0)
+#^l::ResizeWin(100, 0) 
+#^k::ResizeWin(0, -100)
+#^j::ResizeWin(0, 100) 
 
 ; ==========================================================
-; ESCRITORIOS VIRTUALES (Ctrl + Alt + h/l)
+; ESCRITORIOS VIRTUALES
 ; ==========================================================
-^!h::Send("^#{Left}")   ; Ctrl + Alt + h  => Escritorio Anterior
-^!l::Send("^#{Right}")  ; Ctrl + Alt + l  => Escritorio Siguiente
+^!h::Send("^#{Left}")
+^!l::Send("^#{Right}")
 
-; --- SECCIÓN DE BORRADO ---
-!x::
-!f::
-+x::
-+f::
-+k::
-+n::Send("{Backspace}")  ; Borra 1 caracter con Alt+X/F o Shift+X/F/K/N
+; ==========================================================
+; SECCIÓN DE BORRADO
+; ==========================================================
 
-!n::Send("^{Backspace}") ; Alt + N -> Borrar palabra completa
++n::Send("{Backspace}")  ; Shift + N -> Borrar 1 caracter (Izquierda)
+
+!n::Send("^{Backspace}") ; Alt + N   -> Borrar palabra completa (Intacto)
 
 ; Navegación extendida
 !i::Send("{PgUp}")
@@ -367,6 +361,8 @@ ResizeWin(w_delta, h_delta) {
 ::xe::por ejemplo
 ::cq::se que
 ::sto::esto
+::mkc::markdown y en código raw
+::mkcc:: genéralo en markdown y en código raw
 
 #HotIf
 
